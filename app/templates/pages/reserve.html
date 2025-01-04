@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% set body_class = "reserve" %}
+
+{% block content %}
+<div class="content">
+    <h1>{{ page_title }}</h1>
+    {% if message %}
+        <div class="alert">{{ message }}</div>
+    {% endif %}
+    <form id="reservationForm" action="{{ url_for('main.reserve') }}" method="POST" formnovalidate>
+        <label for="first_name">First Name:</label>
+        <input type="text" name="first_name" id="first_name" required>
+
+        <label for="last_name">Last Name:</label>
+        <input type="text" name="last_name" id="last_name" required>
+
+        <label for="email">Email Address:</label>
+        <input type="email" name="email" id="email" required>
+
+        <label for="reservation_type">Reservation Type:</label>
+        <select name="reservation_type" id="reservation_type" required>
+            <option value="">Select a Reservation Type</option>
+            {% for value, label in reservation_types %}
+                <option value="{{ value }}">{{ label }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="reservation_date">Reservation Date:</label>
+        <input type="date" name="reservation_date" id="reservation_date" required>
+
+        <label for="reservation_time">Reservation Time:</label>
+        <input type="time" name="reservation_time" id="reservation_time" required>
+
+        <button type="submit">Reserve</button>
+    </form>
+</div>
+{% endblock %}

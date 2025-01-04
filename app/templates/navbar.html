@@ -1,0 +1,42 @@
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+        <div class="container-fluid">
+            <!-- Navbar Brand -->
+            <a class="navbar-brand" href="{{ url_for('main.main', page_name='home') }}">{{ config.WEBSITE_NAME }}</a>
+  
+            <!-- Navbar Toggle Button for Mobile -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+  
+            <!-- Navbar Links -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <!-- Mobile menu -->
+                <ul class="navbar-nav d-lg-none">
+                    {% for url, name in nav_items %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('main.main', page_name=url.strip('/')) }}">{{ name }}</a>
+                    </li>
+                    {% endfor %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contact">Contact</a>
+                    </li>
+                </ul>
+
+                <!-- Links for medium and large screens -->
+                <ul class="navbar-nav centered d-none d-lg-flex">
+                    {% for url, name in nav_items %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('main.main', page_name=url.strip('/')) }}">{{ name }}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+                <ul class="navbar-nav right d-none d-lg-flex">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
